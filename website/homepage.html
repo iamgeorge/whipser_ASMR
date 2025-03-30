@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Whisper - home</title>
+  <style>
+    /* 全局样式：页面边距0 */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    /* header部分：左右边距3inch */
+    header {
+      margin: 0 3in;
+      position: relative;
+    }
+    /* “WHISPER”文字样式 */
+    .header-text {
+      font-family: Candara, sans-serif;
+      font-size: 18px;
+      color: #BFB3AD;
+      letter-spacing: 1ch;
+      text-align: left;
+      display: inline-block;
+    }
+    /* homepage 图片样式：右对齐、宽度4% */
+    .header-img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 4%;
+    }
+    /* 居中显示 line1.png */
+    .center-img {
+      display: block;
+      margin: 20px auto;
+      width: 100%;
+    }
+    /* section1：左右边距3inch */
+    .section1 {
+      margin: 0 3in;
+    }
+    /* columns布局：两列放在同一行 */
+    .columns {
+      display: flex;
+      flex-direction: row;
+    }
+    /* 两个column各占50%宽度 */
+    .column1, .column2 {
+      width: 50%;
+    }
+    /* 文本样式 */
+    .title {
+      font-family: "haettenschweiler", sans-serif;
+      font-size: 75px;
+      font-weight: normal;
+      color: #BFB3AD;
+      letter-spacing: -1px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    /* bottom1 图片样式 */
+    .bottom1 {
+      width: 25%;
+      display: block;
+      margin-top: 20px;
+    }
+    /* 包裹 bottom1 的链接，右对齐 */
+    .bottom1-anchor {
+      text-align: right;
+    }
+    /* section2：背景色#EAE6E4，左右边距0，文本居中 */
+    .section2 {
+      margin: 0;
+      background-color: #EAE6E4;
+      text-align: center;
+      padding: 20px;
+      min-height: 15em;
+    }
+    .section2 .create-space {
+      font-family: "MS Reference Sans Serif", sans-serif;
+      font-size: 56px;
+      font-weight: bold;
+      color: #BFB3AD;
+    }
+    .section2 .description {
+      font-family: "MS Reference Sans Serif", sans-serif;
+      font-size: 20px;
+      color: #BFB3AD;
+      margin-top: 20px;
+    }
+    /* bottom2 图片样式 */
+    .section2 img.bottom2 {
+      width: 10%;
+      margin-top: 20px;
+    }
+    /* footer：背景色#EAE6E4，文本居中 */
+    footer {
+      background-color: #EAE6E4;
+      text-align: center;
+      font-family: "Times New Roman", serif;
+      font-size: 12px;
+      color: #BFB3AD;
+      padding: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- header区域 -->
+  <header>
+    <!-- 空2行 -->
+    <br>
+    <!-- 左侧 WHISPER 文字 -->
+    <div class="header-text">WHISPER</div>
+    <!-- 右侧 homepage.png，鼠标悬停时更换图片，点击链接到 index.html -->
+    <a href="index.html">
+      <img src="homepage.png" alt="Homepage" class="header-img"
+           onmouseover="this.src='homepage-click.png'" 
+           onmouseout="this.src='homepage.png'">
+    </a>
+    <!-- 空1行 -->
+    <br>
+    <!-- 居中显示 line1.png -->
+    <img src="line1.png" alt="Line1" class="center-img">
+  </header>
+  
+  <!-- 页面主体内容 -->
+  <main>
+    <!-- section1 -->
+    <section class="section1">
+      <!-- 空1行 -->
+      <br>
+      <!-- 两列布局 -->
+      <div class="columns">
+        <!-- column1：放pic 1.png，图片大小80% -->
+        <div class="column1">
+          <img src="pic 1.png" alt="Pic 1" style="width: 80%;">
+        </div>
+        <!-- column2：放文本 -->
+        <div class="column2">
+          <span class="title">Your personalized learning space</span>
+          <!-- 空一行 -->
+          <br>
+          <!-- 在column2内右对齐放bottom 1.png -->
+          <div class="bottom1-anchor">
+            <a href="page2.html">
+              <img src="bottom 1.png" alt="Bottom 1" class="bottom1"
+                   onmouseover="this.src='bottom 1- click.png'" 
+                   onmouseout="this.src='bottom 1.png'">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br><br><br><br>
+    <!-- section2 -->
+    <section class="section2">
+      <!-- 空两行 -->
+      <br><br>
+      <!-- 居中显示标题 -->
+      <div class="create-space">Create Your Space</div>
+      <!-- 空两行 -->
+      <br><br>
+      <!-- 描述文字 -->
+      <div class="description">
+        A dedicated and relaxing space to cater to your individual learning experiences and needs.
+      </div>
+      <!-- 空1行 -->
+      <br>
+      <!-- bottom2.png 图片，鼠标悬停时更换图片，点击跳转到 page3 -->
+      <a href="page3.html">
+        <img src="bottom 2.png" alt="Bottom 2" class="bottom2"
+             onmouseover="this.src='bottom 2- click.png'" 
+             onmouseout="this.src='bottom 2.png'">
+      </a>
+      <br>
+    </section>
+  </main>
+  
+  <!-- footer区域 -->
+  <footer>
+    © 2025 by Whisper. All rights reserved.
+  </footer>
+</body>
+</html>
