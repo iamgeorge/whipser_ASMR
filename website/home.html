@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Whisper - home</title>
+  <!-- 固定布局，禁止缩放 -->
+  <meta name="viewport" content="width=1200, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    /* 重置 body 外边距 */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    /* header与section1的固定宽度容器 */
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      background: #fff;
+    }
+    /* header固定高度 */
+    header {
+      position: relative;
+      height: 150px;
+    }
+    /* “WHISPER”文字 */
+    .header-text {
+      font-family: Candara, sans-serif;
+      font-size: 22px;
+      color: #AA9A91;
+      letter-spacing: 8px;
+      position: absolute;
+      top: 40px;
+      left: 20px;
+    }
+    /* homepage图片 */
+    .header-img {
+      position: absolute;
+      top: 10px;
+      right: -5px;
+      width: 100px;
+      height: auto;
+    }
+    /* line1.png 居中显示 */
+    .center-img {
+      display: block;
+      margin: 20px auto;
+      width: 1160px; /* 留两侧各20px */
+    }
+    /* section1 固定高度 */
+    .section1 {
+      position: relative;
+      height: 400px;
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    /* 两列布局 */
+    .columns {
+      display: flex;
+      flex-direction: row;
+      height: 300px;
+    }
+    .column1, .column2 {
+      width: 600px; /* 1200/2 */
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    /* column1内图片 */
+    .column1 img {
+      width: 480px; /* 80% of 600px */
+      height: auto;
+    }
+    /* 标题文本 */
+    .title {
+      position: absolute;
+      top: 100px;
+      font-family: "haettenschweiler", sans-serif;
+      font-size: 80px;
+      color: #AA9A91;
+      letter-spacing: -1.5px;
+    }
+    /* bottom1 图片，固定尺寸 */
+    .bottom1 {
+      position: absolute;
+      top: 240px;
+      right: 412px;
+      width: 165px; /* 固定宽度 */
+      margin-top: 20px;
+    }
+    /* 在 column2 内右对齐 bottom1 */
+    .bottom1-anchor {
+      text-align: right;
+    }
+    /* section2，全宽背景 */
+    .section2 {
+      width: 100%;
+      background-color: #EAE6E4;
+      text-align: center;
+      padding: 20px 0;
+      box-sizing: border-box;
+      height: 400px;
+    }
+    .section2 .create-space {
+      font-family: "bodoni MT", sans-serif;
+      font-size: 70px;
+      font-weight: bold;
+      color: #AA9A91;
+    }
+    .section2 .description {
+      font-family: "bodoni MT", sans-serif;
+      font-size: 20px;
+      color: #AA9A91;
+      margin-top: 20px;
+    }
+    /* bottom2 图片 */
+    .bottom2 {
+      width: 150px;
+      margin-top: 20px;
+    }
+    /* footer，全宽背景 */
+    footer {
+      width: 100%;
+      background-color: #EAE6E4;
+      text-align: center;
+      font-family: "Times New Roman", serif;
+      font-size: 12px;
+      color: #BFB3AD;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- header与section1放在固定宽度容器内 -->
+  <div class="container">
+    <!-- header区域 -->
+    <header>
+      <br><br>
+      <div class="header-text">WHISPER</div>
+      <a href="home.html">
+        <img src="homepage.png" alt="Homepage" class="header-img"
+             onmouseover="this.src='homepage-click.png'" 
+             onmouseout="this.src='homepage.png'">
+      </a>
+      <br><br>
+         <img src="line1.png" alt="Line1" class="center-img">
+    </header>
+    <!-- section1 -->
+    <section class="section1">
+      <br><br>
+      <div class="columns">
+        <!-- column1：放pic 1.png -->
+        <div class="column1">
+          <img src="pic 1.png" alt="Pic 1">
+        </div>
+        <!-- column2：放文本及 bottom1 -->
+        <div class="column2">
+          <span class="title">Your personalized learning space</span>
+          <div class="bottom1-anchor">
+            <a href="LearnMore.html">
+              <img src="bottom 1.png" alt="Bottom 1" class="bottom1"
+                   onmouseover="this.src='bottom 1- click.png'" 
+                   onmouseout="this.src='bottom 1.png'">
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br>
+  <!-- section2全宽 -->
+  <section class="section2">
+    <br><br><br>
+    <div class="create-space">Create Your Space</div>
+    <div class="description">
+      A dedicated and relaxing space to cater to your individual learning experiences and needs.
+    </div>
+    <a href="page3.html">
+      <img src="bottom 2.png" alt="Bottom 2" class="bottom2"
+           onmouseover="this.src='bottom 2- click.png'" 
+           onmouseout="this.src='bottom 2.png'">
+    </a>
+  </section>
+  <br>
+  <!-- footer全宽 -->
+  <footer>
+    © 2025 by Whisper. All rights reserved.
+  </footer>
+</body>
+</html>

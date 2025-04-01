@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Whisper - LearnMore</title>
+  <!-- 固定布局，禁止缩放 -->
+  <meta name="viewport" content="width=1200, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    /* 全页面背景为 #EAE6E4，左右边距20px */
+    body {
+      margin: 0;
+      padding: 0 20px;
+      background-color: #EAE6E4;
+    }
+    /* header与section1的固定宽度容器（header区域保持白色背景） */
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      background: #EAE6E4;
+    }
+    /* header 固定高度，背景 #EAE6E4 */
+    header {
+      position: relative;
+      height: 120px;
+      background: #EAE6E4;
+    }
+    /* “WHISPER”文字 */
+    .header-text {
+      font-family: Candara, sans-serif;
+      font-size: 22px;
+      color: #BFB3AD;
+      letter-spacing: 8px;
+      position: absolute;
+      top: 40px;
+      left: 20px;
+    }
+    /* homepage图片 */
+    .header-img {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      width: 100px;
+      height: auto;
+    }
+    /* line1.png 居中显示 */
+    .center-img {
+      display: block;
+      margin: 20px auto;
+      width: 1160px;
+    }
+    /* footer，全宽背景 */
+    footer {
+      width: 100%;
+      background-color: #EAE6E4;
+      text-align: center;
+      font-family: "Times New Roman", serif;
+      font-size: 12px;
+      color: #BFB3AD;
+      padding: 20px 0;
+    }
+    /* ========== Section1（原版） ========== */
+    .section1 {
+      width: 1200px;
+      margin: 40px auto; /* 四行空白 */
+      display: flex;
+      align-items: center;
+    }
+    .section1 .left-box {
+      background-color: #EAE6E4;
+      width: 600px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .section1 .left-box h1 {
+      font-family: "Bodoni MT", serif;
+      font-size: 65px;
+      color: #AA9A91;
+      margin: 0;
+    }
+    .section1 .right-box {
+      background-color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      width: 1000px;
+      height: 500px;
+      margin-left: 50px;
+      margin-right: -200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .section1 .right-box p {
+      font-family: "Bodoni MT", serif;
+      font-size: 22px;
+      color: #BFB3AD;
+      margin-left: 220px;
+      margin-right: 220px;
+      text-align: center;
+    }
+    /* ========== Section2（修改后） ========== */
+    .section2-container {
+      width: 1530px;
+      height: 500px;
+      margin-top: 20px;
+      margin-left: 200px;
+      background-color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    /* 上半部分：左右两列，各占50% */
+    .section2-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .section2-box .left-column,
+    .section2-box .right-column {
+      width: 50%;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    .section2-box .left-column p {
+      font-family: "Bodoni MT", serif;
+      font-size: 50px;
+      color: #BFB3AD;
+      margin-top: 20%;
+      margin-left: 40%
+    }
+    .section2-box .right-column ul {
+      font-family: "Times New Roman", serif;
+      font-size: 18px;
+      color: black;
+      list-style-type: disc;
+      padding-left: 20px;
+      margin-right: 60px;
+      margin-left: 60px;
+      margin-top: 40px;
+    }
+    .section2-box .right-column ul li {
+      margin-bottom: 10px;
+
+    }
+    .section2-box .right-column ul li ul {
+      margin-top: 5px;
+      margin-left: 20px;
+      list-style-type: disc;
+    }
+    /* 下半部分：补充说明，空3行后显示 */
+    .section2-bottom {
+      margin-top: 25px;
+      text-align: center;
+    }
+    .section2-bottom p {
+      font-family: "Bodoni MT", serif;
+      font-size: 25px;
+      color: black;
+      margin: 0;
+    }
+    /* ========== Section3（原版） ========== */
+    .section3 {
+      width: 100%;
+      background-color: white;
+      padding: 20px 0;
+      box-sizing: border-box;
+      margin-top: 50px;
+    }
+    .section3 .highlights {
+      text-align: center;
+      font-family: "Times New Roman", serif;
+      font-size: 40px;
+      font-weight: bold;
+      color: #EAD4A0;
+      letter-spacing: 10px;
+      margin-bottom: 40px;
+    }
+    .section3 .images-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .section3 .image-box {
+      position: relative;
+      text-align: center;
+    }
+    .section3 .image-box img {
+      display: block;
+      margin: 0 auto;
+      top: 240px;
+      right: 500px;
+      width: 350px; 
+    }
+    .section3 .image-box .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      color: white;
+      text-align: center;
+    }
+    .section3 .image-box .overlay .caption1 {
+      font-family: "Times New Roman", serif;
+      font-size: 18px;
+      font-weight: bold;
+      color: #bba77a;
+      margin-top: 10px;
+    }
+    .section3 .image-box .overlay .caption2 {
+      font-family: "Times New Roman", serif;
+      font-size: 16px;
+      font-style: italic;
+      margin: 50px;
+    }
+  </style>
+</head>
+<body>
+  <!-- header与Section1放在固定宽度容器内 -->
+  <div class="container">
+    <!-- header区域 -->
+    <header>
+      <br><br>
+      <div class="header-text">WHISPER</div>
+      <a href="home.html">
+        <img src="homepage.png" alt="Homepage" class="header-img"
+             onmouseover="this.src='homepage-click.png'" 
+             onmouseout="this.src='homepage.png'">
+      </a>
+      <br><br>
+      <img src="line1.png" alt="Line1" class="center-img">
+    </header>
+    <br><br>
+    <!-- Section1（原版） -->
+    <section class="section1">
+      <!-- 左侧：Learn More 标题 -->
+      <div class="left-box">
+        <h1>Learn More</h1>
+      </div>
+      <!-- 右侧：白色 box -->
+      <div class="right-box">
+        <p>A product that allows users to generate their preferred music and images by AI, creating a surface with visual and auditory elements, then help user improve their focus and positive emotion in learning or working.</p>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Section2（修改后） -->
+  <div class="section2-container">
+    <div class="section2-box">
+      <!-- 左侧列：标题 -->
+      <div class="left-column">
+        <p>Why music and visual?</p>
+      </div>
+      <!-- 右侧列：Bullet List -->
+      <div class="right-column">
+        <ul>
+          <li>
+            Audio can be a powerful tool for affecting memory, emotional states, and learning outcomes (Akhshabi &amp; Dortaj, 2023; Angwin et al., 2017; Gallego-Gómez et al., 2020; Jakubowski &amp; Ghosh, 2019; Söderlund et al., 2021).
+            <ul>
+              <li>Auditory stimuli, particularly music, impact cognitive processes, which can reduce stress and improve academic performance.</li>
+              <li>Music can also be a therapy that can positively influence emotional states, reduce stress, and improve overall well-being.</li>
+            </ul>
+          </li>
+          <li>
+            Learners who engage with visual content that aligns with their personal preferences often experience improved attention and retention.
+            <ul>
+              <li>When students are presented with materials that match their aesthetic or visual preferences, they are more likely to be motivated and engaged, enhancing learning outcomes (Harris &amp; J. McDonald, 2016).</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 下半部分：补充说明，空3行后显示 -->
+    <div class="section2-bottom">
+      <p>However, barely any product tries to combine personalized music with images to create a user preference learning environment.</p>
+    </div>
+  </div>
+  
+  <!-- Section3（原版） -->
+  <div class="section3">
+    <br><br>
+    <div class="highlights">Highlights</div>
+    <br>
+    <div class="images-container">
+      <div class="image-box">
+        <img src="Visual.png" alt="Visual">
+        <div class="overlay">
+          <p class="caption1">Visual</p>
+          <p class="caption2">AI-generated personalized images based on user preferences are set as the desktop wallpaper. These images will be used to enhance emotional engagement and focus.</p>
+        </div>
+      </div>
+      <div class="image-box">
+        <img src="Auditory.png" alt="Auditory">
+        <div class="overlay">
+          <p class="caption1">Auditory</p>
+          <p class="caption2">AI-generated background music (BGM) and white noise tailored to the generated image. Users can select from various music types, including white noise, ambient music, or combined sounds, creating a personalized auditory environment.</p>
+        </div>
+      </div>
+      <div class="image-box">
+        <img src="Personalized.png" alt="Personalized">
+        <div class="overlay">
+          <p class="caption1">Personalized</p>
+          <p class="caption2">Text/draw input to generate visual content and the ability to control music preferences (type, duration, intensity) that align with the generated visual.</p>
+        </div>
+        <br><br>
+      </div>
+    </div>
+  </div>
+  
+  <!-- footer 全宽 -->
+  <footer>
+    © 2025 by Whisper. All rights reserved.
+  </footer>
+</body>
+</html>
