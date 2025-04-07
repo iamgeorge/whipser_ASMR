@@ -6,15 +6,15 @@ import os
 import uuid
 import torchaudio
 from audiocraft.models import musicgen
-
+from dotenv import load_dotenv
 app = Flask(__name__)
 CORS(app)
 # Load model once globally
 
 os.makedirs("static/music", exist_ok=True)
+load_dotenv()  # loads from .env file
 
-openai.api_key = "real key"
-
+openai.api_key = os.getenv("OPENAI_API_KEY")
 # Web UI for browser
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -156,7 +156,7 @@ def generate_background_music():
         torchaudio.save(filepath, output[0].cpu(), 32000)
 
         # Return file URL
-        file_url = f"/static/music/{filename}"
+        file_url = f"http://127.0.0.1:5000/static/music/{filename}"
         return Response(file_url, status=200, mimetype='text/plain')
 
     except Exception as e:

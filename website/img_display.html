@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <title>ASMR & Study Background Generator</title>
     <style>
@@ -56,7 +57,7 @@
     <label for="details">Extra Details (optional):</label>
     <textarea id="details" placeholder="e.g., light rain tapping on the window, tea steam rising..."></textarea>
 
-    <button onclick="generateImage()">Generate Image</button>
+    <button type="button" onclick="generateImage(event)">Generate Image</button>
     <p id="loading">Generating your ASMR background image...</p>
 
     <div id="result">
@@ -71,7 +72,7 @@
     <label for="musicPrompt">Customize Music Prompt (optional):</label>
     <textarea id="musicPrompt" placeholder="e.g., soft piano with gentle rain sounds, dreamy synth with forest ambience..."></textarea>
 
-    <button id="generateMusicBtn" onclick="generateMusic()" disabled>Generate Background Music</button>
+    <button type="button" id="generateMusicBtn" onclick="generateMusic(event)">Generate Background Music</button>
     <p id="musicLoading">Composing your ambient music...</p>
 
     <div id="musicResult" style="display: none;">
@@ -81,7 +82,15 @@
     </div>
 
     <script>
-        async function generateImage() {
+        // 🚨 拦截一切页面刷新尝试（除非用户手动确认）
+        window.addEventListener("beforeunload", function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+        });
+
+        async function generateImage(event) {
+            event.preventDefault();
+
             const scene = document.getElementById("scene").value;
             const mood = document.getElementById("mood").value;
             const lighting = document.getElementById("lighting").value;
@@ -92,14 +101,12 @@
             document.getElementById("loading").style.display = "block";
             document.getElementById("generatedImage").style.display = "none";
             document.getElementById("promptOutput").innerText = "";
-            document.getElementById("generateMusicBtn").disabled = true;
+            document.getElementById("generateMusicBtn").disabled = false;
 
             try {
                 const response = await fetch('http://127.0.0.1:5000/api/generate-background-image', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ prompt })
                 });
 
@@ -117,7 +124,9 @@
             }
         }
 
-        async function generateMusic() {
+        async function generateMusic(event) {
+            event.preventDefault();
+
             const customPrompt = document.getElementById("musicPrompt").value.trim();
             const scene = document.getElementById("scene").value;
             const mood = document.getElementById("mood").value;
@@ -132,13 +141,12 @@
             try {
                 const response = await fetch('http://127.0.0.1:5000/api/generate-background-music', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ prompt: finalPrompt })
                 });
 
                 const music_url = await response.text();
+                console.log(music_url);
 
                 document.getElementById("musicLoading").style.display = "none";
                 document.getElementById("musicPlayer").src = music_url;
