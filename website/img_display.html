@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ASMR & Study Background Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        select, input, textarea, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 1em;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        #loading, #musicLoading {
+            display: none;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌙 ASMR & Study Background Generator</h1>
+    <p>Create your ideal learning or relaxing environment.</p>
+
+    <label for="scene">Scene Type:</label>
+    <select id="scene">
+        <option value="cozy study">Cozy Study</option>
+        <option value="peaceful cafe">Peaceful Cafe</option>
+        <option value="misty forest">Misty Forest</option>
+        <option value="minimal desk">Minimal Desk</option>
+    </select>
+
+    <label for="mood">Mood:</label>
+    <select id="mood">
+        <option value="calm">Calm</option>
+        <option value="dreamy">Dreamy</option>
+        <option value="focused">Focused</option>
+        <option value="sleepy">Sleepy</option>
+    </select>
+
+    <label for="lighting">Lighting Description:</label>
+    <input type="text" id="lighting" placeholder="e.g., fairy lights, sunset glow">
+
+    <label for="details">Extra Details (optional):</label>
+    <textarea id="details" placeholder="e.g., light rain tapping on the window, tea steam rising..."></textarea>
+
+    <button onclick="generateImage()">Generate Image</button>
+    <p id="loading">Generating your ASMR background image...</p>
+
+    <div id="result">
+        <img id="generatedImage" src="" alt="" style="display: none;">
+        <p><strong>Prompt Used:</strong></p>
+        <p id="promptOutput"></p>
+    </div>
+
+    <h2>🎵 Background Music Generator</h2>
+    <p>Create ambient audio to match your scene.</p>
+
+    <label for="musicPrompt">Customize Music Prompt (optional):</label>
+    <textarea id="musicPrompt" placeholder="e.g., soft piano with gentle rain sounds, dreamy synth with forest ambience..."></textarea>
+
+    <button id="generateMusicBtn" onclick="generateMusic()" disabled>Generate Background Music</button>
+    <p id="musicLoading">Composing your ambient music...</p>
+
+    <div id="musicResult" style="display: none;">
+        <p><strong>Music Prompt Used:</strong></p>
+        <p id="musicPromptOutput"></p>
+        <audio id="musicPlayer" controls></audio>
+    </div>
+
+    <script>
+        async function generateImage() {
+            const scene = document.getElementById("scene").value;
+            const mood = document.getElementById("mood").value;
+            const lighting = document.getElementById("lighting").value;
+            const details = document.getElementById("details").value;
+
+            const prompt = `A ${mood} ${scene} background with ${lighting}. ${details} one image only`;
+
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("generatedImage").style.display = "none";
+            document.getElementById("promptOutput").innerText = "";
+            document.getElementById("generateMusicBtn").disabled = true;
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/api/generate-background-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt })
+                });
+
+                const image_url = await response.text();
+
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("generatedImage").src = image_url;
+                document.getElementById("generatedImage").style.display = "block";
+                document.getElementById("promptOutput").innerText = prompt;
+
+                document.getElementById("generateMusicBtn").disabled = false;
+            } catch (err) {
+                document.getElementById("loading").style.display = "none";
+                alert("Image Generation Error: " + err.message);
+            }
+        }
+
+        async function generateMusic() {
+            const customPrompt = document.getElementById("musicPrompt").value.trim();
+            const scene = document.getElementById("scene").value;
+            const mood = document.getElementById("mood").value;
+            const defaultPrompt = `Ambient ${mood} music for a ${scene} environment`;
+
+            const finalPrompt = customPrompt || defaultPrompt;
+
+            document.getElementById("musicLoading").style.display = "block";
+            document.getElementById("musicResult").style.display = "none";
+            document.getElementById("musicPromptOutput").innerText = "";
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/api/generate-background-music', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: finalPrompt })
+                });
+
+                const music_url = await response.text();
+
+                document.getElementById("musicLoading").style.display = "none";
+                document.getElementById("musicPlayer").src = music_url;
+                document.getElementById("musicResult").style.display = "block";
+                document.getElementById("musicPromptOutput").innerText = finalPrompt;
+            } catch (err) {
+                document.getElementById("musicLoading").style.display = "none";
+                alert("Music Generation Error: " + err.message);
+            }
+        }
+    </script>
+
+</body>
+</html>
