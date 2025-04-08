@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Your Space</title>
+  <meta name="viewport" content="width=1200, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: "bodoni MT", serif;
+      background-color: #fff;
+    }
+
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      background: #fff;
+      flex: 1;
+    }
+
+    header {
+      position: relative;
+      height: 150px;
+    }
+
+    .header-text {
+      font-family: Candara, sans-serif;
+      font-size: 22px;
+      color: #AA9A91;
+      letter-spacing: 8px;
+      position: absolute;
+      top: 40px;
+      left: 12px;
+    }
+
+    .header-img {
+      position: absolute;
+      top: 10px;
+      right: 2px;
+      width: 100px;
+      height: auto;
+    }
+
+    .center-img {
+      display: block;
+      position: absolute;
+      top: 104px;
+      left: 12px;
+      width: 1160px;
+    }
+
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 130px;
+      height: 700px;
+      width: 1200px;
+      background: url('background.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: space-between;
+      width: 800px;
+      background-color: rgba(255,255,255,0.4);
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    .left-column {
+      width: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      font-weight: bold;
+      color: #8A766C;
+    }
+
+    .right-column {
+      width: 60%;
+    }
+
+    .panel {
+      padding: 20px;
+      background-color: #F6F5F4;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: bold;
+      color: #8A766C;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #8A766C;
+      margin-bottom: 20px;
+    }
+
+    .button-img {
+      width: 140px;
+      margin: 20px 60px 0 0;
+      cursor: pointer;
+    }
+
+    .draw-area, .text-area {
+      display: none;
+      text-align: center;
+    }
+
+    textarea, input[type=text] {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+
+    .action-btn {
+      width: 140px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .color-picker {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 10px 0;
+      gap: 5px;
+    }
+
+    .color-swatch {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    canvas {
+      border: 1px solid #aaa;
+      background-color: white;
+    }
+
+    footer {
+      width: 100%;
+      background-color: #EAE6E4;
+      text-align: center;
+      font-family: "Times New Roman", serif;
+      font-size: 12px;
+      color: #BFB3AD;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <br><br>
+      <div class="header-text">WHISPER</div>
+      <a href="home.html">
+        <img src="homepage.png" alt="Homepage" class="header-img"
+             onmouseover="this.src='homepage-click.png'" 
+             onmouseout="this.src='homepage.png'">
+      </a>
+      <br><br>
+      <img src="line1.png" alt="Line1" class="center-img">
+    </header>
+
+    <!-- 初始选择界面 -->
+    <div id="choice" class="main">
+      <div class="main-content">
+        <div class="left-column">Create Your Space</div>
+        <div class="right-column">
+          <div class="panel">
+            <div class="title">Generate Your Unique Wallpaper</div>
+            <div class="subtitle">How do you want to create your wallpaper?</div>
+            <img src="draw.png" class="button-img" id="drawBtn"
+                 onmouseover="this.src='draw-click.png'"
+                 onmouseout="this.src='draw.png'">
+            <img src="text.png" class="button-img" id="textBtn"
+                 onmouseover="this.src='text-click.png'"
+                 onmouseout="this.src='text.png'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DRAW 模式 -->
+    <div id="drawMode" class="draw-area">
+      <h2 style="color:#8A766C">Draw your image</h2>
+      <canvas id="drawingCanvas" width="300" height="300"></canvas>
+      <div style="margin: 10px 0;">
+        <label style="color:#8A766C;">Brush Size: </label>
+        <input type="range" id="brushSize" min="1" max="30" value="2">
+      </div>
+      <div class="color-picker" id="colorPicker"></div>
+      <input type="text" placeholder="Describe your sketch...">
+      <br>
+      <img src="generate.png" class="action-btn"
+           onmouseover="this.src='generate-click.png'"
+           onmouseout="this.src='generate.png'">
+      <img src="clear.png" class="action-btn" onclick="clearCanvas()"
+           onmouseover="this.src='clear-click.png'"
+           onmouseout="this.src='clear.png'">
+      <img src="back.png" class="action-btn" onclick="goBack()"
+           onmouseover="this.src='back-click.png'"
+           onmouseout="this.src='back.png'">
+    </div>
+
+    <!-- TEXT 模式 -->
+    <div id="textMode" class="text-area">
+      <h2 style="color:#8A766C">Describe your image</h2>
+      <textarea rows="8" placeholder="E.g. A corner at a cozy coffee shop and rain outside."></textarea>
+      <br>
+      <img src="generate.png" class="action-btn" onclick="generateImage()"
+           onmouseover="this.src='generate-click.png'"
+           onmouseout="this.src='generate.png'">
+      <br>
+      <img id="generatedImage" style="max-width: 80%; margin-top: 20px; display: none;" />
+      <br>
+      <img src="back.png" class="action-btn" onclick="goBack()"
+           onmouseover="this.src='back-click.png'"
+           onmouseout="this.src='back.png'">
+    </div>
+  </div>
+
+  <footer>
+    © 2025 by Whisper. All rights reserved.
+  </footer>
+
+  <script>
+    const choice = document.getElementById("choice");
+    const drawMode = document.getElementById("drawMode");
+    const textMode = document.getElementById("textMode");
+
+    document.getElementById("drawBtn").onclick = () => {
+      choice.style.display = "none";
+      drawMode.style.display = "block";
+    };
+    document.getElementById("textBtn").onclick = () => {
+      choice.style.display = "none";
+      textMode.style.display = "block";
+    };
+
+    function goBack() {
+      drawMode.style.display = "none";
+      textMode.style.display = "none";
+      choice.style.display = "flex";
+    }
+
+    // canvas 绘图功能 & 清除 & 颜色切换
+    const canvas = document.getElementById("drawingCanvas");
+    const ctx = canvas.getContext("2d");
+    let painting = false;
+    let strokeColor = "#000";
+    const brushSizeInput = document.getElementById("brushSize");
+
+    canvas.addEventListener("mousedown", () => painting = true);
+    canvas.addEventListener("mouseup", () => {
+      painting = false;
+      ctx.beginPath();
+    });
+    canvas.addEventListener("mouseleave", () => painting = false);
+    canvas.addEventListener("mousemove", draw);
+
+    function draw(e) {
+      if (!painting) return;
+      const rect = canvas.getBoundingClientRect();
+      ctx.lineWidth = brushSizeInput.value;
+      ctx.lineCap = "round";
+      ctx.strokeStyle = strokeColor;
+      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    const base16Colors = [
+      "#f5ece2", "#ffec6c", "#f2ca97", "#e2a15a", 
+      "#beacab", "#dc7368", "#9b3228", "#adad96", 
+      "#b2ecad", "#afbcaf", "#718c87", "#647168",
+      "#d6ecf0", "#9bb5ec", "#1573af", "#000000"
+    ];
+
+    const colorPicker = document.getElementById("colorPicker");
+    base16Colors.forEach(color => {
+      const swatch = document.createElement("div");
+      swatch.className = "color-swatch";
+      swatch.style.backgroundColor = color;
+      swatch.onclick = () => strokeColor = color;
+      colorPicker.appendChild(swatch);
+    });
+
+    // 文本模式接入本地 Stable Diffusion
+    async function generateImage() {
+      const prompt = document.querySelector("#textMode textarea").value.trim();
+      if (!prompt) {
+        alert("Please enter a prompt.");
+        return;
+      }
+
+      const img = document.getElementById("generatedImage");
+      img.style.display = "none";
+      img.alt = "Generating...";
+
+      const loadingText = document.createElement("div");
+      loadingText.innerText = "Generating image...";
+      loadingText.style.color = "#8A766C";
+      loadingText.style.fontSize = "14px";
+      loadingText.style.marginTop = "10px";
+      loadingText.id = "loadingText";
+      document.querySelector("#textMode").appendChild(loadingText);
+
+      try {
+        const response = await fetch("http://127.0.0.1:7860/sdapi/v1/txt2img", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: prompt,
+            width: 512,
+            height: 512,
+            steps: 20,
+            sampler_index: "Euler a"
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP error " + response.status);
+        }
+
+        const result = await response.json();
+        const base64 = result.images[0];
+        img.src = "data:image/png;base64," + base64;
+        img.style.display = "block";
+      } catch (error) {
+        alert("Fail to generate the image，because " + error.message);
+        console.error("Error during image generation:", error);
+      } finally {
+        const loading = document.getElementById("loadingText");
+        if (loading) loading.remove();
+      }
+    }
+  </script>
+</body>
+</html>
