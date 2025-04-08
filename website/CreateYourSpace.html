@@ -232,7 +232,7 @@
     <div id="textMode" class="text-area">
       <h2 style="color:#8A766C">Describe your image</h2>
       <textarea rows="8" placeholder="E.g. A corner at a cozy coffee shop and rain outside."></textarea>
-      <br>
+      <br><br>
       <label for="Aspect Ratio">Aspect Ratio:</label>
       <select id="scene">
           <option value="16:9">16:9</option>
@@ -245,9 +245,7 @@
       <img src="generate.png" class="action-btn" onclick="generateImage()"
            onmouseover="this.src='generate-click.png'"
            onmouseout="this.src='generate.png'">
-      <br>
       <img id="generatedImage" style="max-width: 80%; margin-top: 20px; display: none;" />
-      <br>
       <img src="back.png" class="action-btn" onclick="goBack()"
            onmouseover="this.src='back-click.png'"
            onmouseout="this.src='back.png'">
