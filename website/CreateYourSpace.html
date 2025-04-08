@@ -215,8 +215,8 @@
           <option value="4:3">4:3</option>
           <option value="3:4">3:4</option>
           <option value="1:1">1:1</option>
-      <br>
       </select>
+      <br>
       <img src="generate.png" class="action-btn"
            onmouseover="this.src='generate-click.png'"
            onmouseout="this.src='generate.png'">
@@ -232,6 +232,15 @@
     <div id="textMode" class="text-area">
       <h2 style="color:#8A766C">Describe your image</h2>
       <textarea rows="8" placeholder="E.g. A corner at a cozy coffee shop and rain outside."></textarea>
+      <br>
+      <label for="Aspect Ratio">Aspect Ratio:</label>
+      <select id="scene">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16</option>
+          <option value="4:3">4:3</option>
+          <option value="3:4">3:4</option>
+          <option value="1:1">1:1</option>
+      </select>
       <br>
       <img src="generate.png" class="action-btn" onclick="generateImage()"
            onmouseover="this.src='generate-click.png'"
