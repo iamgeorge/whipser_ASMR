@@ -208,7 +208,15 @@
       </div>
       <div class="color-picker" id="colorPicker"></div>
       <input type="text" placeholder="Describe your sketch...">
+      <label for="Aspect Ratio">Aspect Ratio:</label>
+      <select id="scene">
+          <option value="16:9">16:9</option>
+          <option value="9:16">9:16</option>
+          <option value="4:3">4:3</option>
+          <option value="3:4">3:4</option>
+          <option value="1:1">1:1</option>
       <br>
+      </select>
       <img src="generate.png" class="action-btn"
            onmouseover="this.src='generate-click.png'"
            onmouseout="this.src='generate.png'">
